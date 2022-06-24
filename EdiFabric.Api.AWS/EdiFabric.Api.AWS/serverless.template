@@ -7,7 +7,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadEdifactAsync",
-        "Runtime": "net6.0",
+        "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to get a list of blogs",
         "MemorySize": 256,
@@ -25,7 +25,7 @@
           "PutResource": {
             "Type": "Api",
             "Properties": {
-              "Path": "/",
+              "Path": "/edifact/read",
               "Method": "POST"
             }
           }
@@ -36,7 +36,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteEdifactAsync",
-        "Runtime": "net6.0",
+        "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to get a single blog",
         "MemorySize": 256,
@@ -54,7 +54,7 @@
           "PutResource": {
             "Type": "Api",
             "Properties": {
-              "Path": "/",
+              "Path": "/edifact/write",
               "Method": "POST"
             }
           }
@@ -65,7 +65,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateEdifactAsync",
-        "Runtime": "net6.0",
+        "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to add a blog",
         "MemorySize": 256,
@@ -83,7 +83,7 @@
           "PutResource": {
             "Type": "Api",
             "Properties": {
-              "Path": "/",
+              "Path": "/edifact/validate",
               "Method": "POST"
             }
           }
@@ -94,7 +94,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::AckEdifactAsync",
-        "Runtime": "net6.0",
+        "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to remove a blog",
         "MemorySize": 256,
@@ -112,7 +112,7 @@
           "PutResource": {
             "Type": "Api",
             "Properties": {
-              "Path": "/",
+              "Path": "/edifact/ack",
               "Method": "POST"
             }
           }
