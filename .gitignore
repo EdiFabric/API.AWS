@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/EdiFabric.Api.AWS/.vs
+/EdiFabric.Api.AWS/EdiFabric.Api.AWS/.lambda-test-tool/SavedRequests
+/EdiFabric.Api.AWS/EdiFabric.Api.AWS/bin/Debug/net6.0
+/EdiFabric.Api.AWS/EdiFabric.Api.AWS/obj

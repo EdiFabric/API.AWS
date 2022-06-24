@@ -1,0 +1,123 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "AWS Serverless API that exposes the add, remove and get operations for a blogging platform using Amazon DynamoDB.",
+  "Resources": {
+    "ReadEdifact": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadEdifactAsync",
+        "Runtime": "net6.0",
+        "CodeUri": "",
+        "Description": "Function to get a list of blogs",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "WriteEdifact": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteEdifactAsync",
+        "Runtime": "net6.0",
+        "CodeUri": "",
+        "Description": "Function to get a single blog",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ValidateEdifact": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateEdifactAsync",
+        "Runtime": "net6.0",
+        "CodeUri": "",
+        "Description": "Function to add a blog",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "AckEdifact": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::AckEdifactAsync",
+        "Runtime": "net6.0",
+        "CodeUri": "",
+        "Description": "Function to remove a blog",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    }
+  }
+}
