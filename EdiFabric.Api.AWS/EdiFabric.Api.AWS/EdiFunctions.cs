@@ -4,6 +4,9 @@ using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using EdiFabric.Api.AWS;
 
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
+
 public class EdiFunctions
 {
     IEdiService _ediService;
