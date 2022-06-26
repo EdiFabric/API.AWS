@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
-  "Description": "AWS Serverless API that exposes the add, remove and get operations for a blogging platform using Amazon DynamoDB.",
+  "Description": "AWS Serverless API that exposes the parse, generate, validate, and acknowledge operations to programmatically manipulate X12, EDIFACT, HL7, VDA, and NCPDP EDI files.",
   "Resources": {
     "ReadEdifact": {
       "Type": "AWS::Serverless::Function",
@@ -9,7 +9,7 @@
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
-        "Description": "Function to get a list of blogs",
+        "Description": "Function to parse/read EDIFACT files",
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
@@ -38,7 +38,7 @@
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
-        "Description": "Function to get a single blog",
+        "Description": "Function to generate/write EDIFACT files",
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
@@ -67,7 +67,7 @@
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
-        "Description": "Function to add a blog",
+        "Description": "Function to validate EDIFACT messages",
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
@@ -96,7 +96,7 @@
         "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::AckEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
-        "Description": "Function to remove a blog",
+        "Description": "Function to generate EDIFACT acknowledgments",
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
@@ -113,6 +113,383 @@
             "Type": "Api",
             "Properties": {
               "Path": "/edifact/ack",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ReadHl7": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadHl7Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to parse/read HL7 files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/hl7/read",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "WriteHl7": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteHl7Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to generate/write HL7 files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/hl7/write",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ValidateHl7": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateHl7Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to validate HL7 messages",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/hl7/validate",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ReadNcpdp": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadNcpdpAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to parse/read NCPDP files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/ncpdp/read",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "WriteNcpdp": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteNcpdpAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to generate/write NCPDP files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/ncpdp/write",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ValidateNcpdp": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateNcpdpAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to validate NCPDP messages",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/ncpdp/validate",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ReadVda": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadVdaAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to parse/read VDA files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/vda/read",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "WriteVda": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteVdaAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to generate/write VDA files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/vda/write",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ValidateVda": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateVdaAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to validate VDA messages",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/vda/validate",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ReadX12": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadX12Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to parse/read X12 files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/x12/read",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "WriteX12": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteX12Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to generate/write X12 files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/x12/write",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ValidateX12": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateX12Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to validate X12 messages",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/x12/validate",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "AckX12": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::AckX12Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to generate X12 acknowledgments",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EdiFabricApi": "https://api.edination.com/inhouse"
+          }
+        },
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/x12/ack",
               "Method": "POST"
             }
           }

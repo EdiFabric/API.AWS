@@ -2,7 +2,6 @@
 using EdiFabric.Api;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using EdiFabric.Api.AWS;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -42,7 +41,7 @@ public class EdiFunctions
                 var response = new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ReadAsync(input, apiKey),
+                    Body = await _ediService.ReadAsync(input, apiKey, req.GetReadParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
 
@@ -78,7 +77,7 @@ public class EdiFunctions
                 var response = new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.WriteAsync(input, apiKey),
+                    Body = await _ediService.WriteAsync(input, apiKey, req.GetWriteParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/octet-stream; charset=utf-8" } }
                 };
 
@@ -114,7 +113,7 @@ public class EdiFunctions
                 var response = new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ValidateAsync(input, apiKey),
+                    Body = await _ediService.ValidateAsync(input, apiKey, req.GetValidateParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
 
@@ -150,7 +149,7 @@ public class EdiFunctions
                 var response = new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.GenerateAckAsync(input, apiKey),
+                    Body = await _ediService.GenerateAckAsync(input, apiKey, req.GetAckParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
 
