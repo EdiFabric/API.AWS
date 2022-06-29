@@ -18,7 +18,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -47,7 +47,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -76,7 +76,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -105,7 +105,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -134,7 +134,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -163,7 +163,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -192,7 +192,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -221,7 +221,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -250,7 +250,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -279,7 +279,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -308,7 +308,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -337,7 +337,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -366,7 +366,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -395,7 +395,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -424,7 +424,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -453,7 +453,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
@@ -482,7 +482,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse"
+            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
