@@ -59,7 +59,7 @@ public class EdiFunctions
     {
         try
         {
-            if (req.Body == null || req.Body.Length == 0)
+            if (req == null || req.Body == null || req.Body.Length == 0)
             {
                 logger.LogError(_noData);
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
@@ -95,7 +95,7 @@ public class EdiFunctions
     {
         try
         {
-            if (req.Body == null || req.Body.Length == 0)
+            if (req == null || req.Body == null || req.Body.Length == 0)
             {
                 logger.LogError(_noData);
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
@@ -131,7 +131,7 @@ public class EdiFunctions
     {
         try
         {
-            if (req.Body == null || req.Body.Length == 0)
+            if (req == null || req.Body == null || req.Body.Length == 0)
             {
                 logger.LogError(_noData);
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
