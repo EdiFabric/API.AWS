@@ -12,6 +12,6 @@
     "framework"     : "net6.0",
     "s3-prefix"     : "EdiFabric.Api.AWS/",
     "template"      : "serverless.template",
-    "s3-bucket"     : "cf-templates-1wqr4vy3pmchb-us-east-1",
-    "stack-name"    : "teststack"
+    "s3-bucket"     : "edinationtestbucket",
+    "stack-name"    : "edinationtest"
 }

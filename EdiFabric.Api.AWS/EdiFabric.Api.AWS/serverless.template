@@ -6,7 +6,7 @@
     "ReadEdifact": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadEdifactAsync",
+        "Handler": "EdiFabric.Api.AWS::EdifactFunctions::ReadEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to parse/read EDIFACT files",
@@ -18,11 +18,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/edifact/read",
@@ -35,7 +35,7 @@
     "WriteEdifact": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteEdifactAsync",
+        "Handler": "EdiFabric.Api.AWS::EdifactFunctions::WriteEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to generate/write EDIFACT files",
@@ -47,11 +47,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/edifact/write",
@@ -64,7 +64,7 @@
     "ValidateEdifact": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateEdifactAsync",
+        "Handler": "EdiFabric.Api.AWS::EdifactFunctions::ValidateEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to validate EDIFACT messages",
@@ -76,11 +76,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/edifact/validate",
@@ -93,7 +93,7 @@
     "AckEdifact": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::AckEdifactAsync",
+        "Handler": "EdiFabric.Api.AWS::EdifactFunctions::AckEdifactAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to generate EDIFACT acknowledgments",
@@ -105,11 +105,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/edifact/ack",
@@ -122,7 +122,7 @@
     "ReadHl7": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadHl7Async",
+        "Handler": "EdiFabric.Api.AWS::Hl7Functions::ReadHl7Async",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to parse/read HL7 files",
@@ -134,11 +134,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/hl7/read",
@@ -151,7 +151,7 @@
     "WriteHl7": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteHl7Async",
+        "Handler": "EdiFabric.Api.AWS::Hl7Functions::WriteHl7Async",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to generate/write HL7 files",
@@ -163,11 +163,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/hl7/write",
@@ -180,7 +180,7 @@
     "ValidateHl7": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateHl7Async",
+        "Handler": "EdiFabric.Api.AWS::Hl7Functions::ValidateHl7Async",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to validate HL7 messages",
@@ -192,11 +192,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/hl7/validate",
@@ -209,7 +209,7 @@
     "ReadNcpdp": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadNcpdpAsync",
+        "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::ReadNcpdpAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to parse/read NCPDP files",
@@ -221,11 +221,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/ncpdp/read",
@@ -238,7 +238,7 @@
     "WriteNcpdp": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteNcpdpAsync",
+        "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::WriteNcpdpAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to generate/write NCPDP files",
@@ -250,11 +250,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/ncpdp/write",
@@ -267,7 +267,7 @@
     "ValidateNcpdp": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateNcpdpAsync",
+        "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::ValidateNcpdpAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to validate NCPDP messages",
@@ -279,11 +279,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/ncpdp/validate",
@@ -296,7 +296,7 @@
     "ReadVda": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadVdaAsync",
+        "Handler": "EdiFabric.Api.AWS::VdaFunctions::ReadVdaAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to parse/read VDA files",
@@ -308,11 +308,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/vda/read",
@@ -325,7 +325,7 @@
     "WriteVda": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteVdaAsync",
+        "Handler": "EdiFabric.Api.AWS::VdaFunctions::WriteVdaAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to generate/write VDA files",
@@ -337,11 +337,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/vda/write",
@@ -354,7 +354,7 @@
     "ValidateVda": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateVdaAsync",
+        "Handler": "EdiFabric.Api.AWS::VdaFunctions::ValidateVdaAsync",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to validate VDA messages",
@@ -366,11 +366,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/vda/validate",
@@ -383,7 +383,7 @@
     "ReadX12": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ReadX12Async",
+        "Handler": "EdiFabric.Api.AWS::X12Functions::ReadX12Async",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to parse/read X12 files",
@@ -395,11 +395,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/x12/read",
@@ -412,7 +412,7 @@
     "WriteX12": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::WriteX12Async",
+        "Handler": "EdiFabric.Api.AWS::X12Functions::WriteX12Async",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to generate/write X12 files",
@@ -424,11 +424,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/x12/write",
@@ -441,7 +441,7 @@
     "ValidateX12": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::ValidateX12Async",
+        "Handler": "EdiFabric.Api.AWS::X12Functions::ValidateX12Async",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to validate X12 messages",
@@ -453,11 +453,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/x12/validate",
@@ -470,7 +470,7 @@
     "AckX12": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "EdiFabric.Api.AWS::EdiFabric.Api.AWS.EdifactFunctions::AckX12Async",
+        "Handler": "EdiFabric.Api.AWS::X12Functions::AckX12Async",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function to generate X12 acknowledgments",
@@ -482,11 +482,11 @@
         ],
         "Environment": {
           "Variables": {
-            "EdiFabricApi": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
           }
         },
         "Events": {
-          "PutResource": {
+          "ProxyResource": {
             "Type": "Api",
             "Properties": {
               "Path": "/x12/ack",
