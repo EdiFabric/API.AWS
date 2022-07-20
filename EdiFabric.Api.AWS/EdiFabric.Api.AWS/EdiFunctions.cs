@@ -38,14 +38,12 @@ public class EdiFunctions
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;           
             using (var input = body.LoadToStream())
             {
-                var response = new APIGatewayProxyResponse
+                return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Body = await _ediService.ReadAsync(input, apiKey, req.GetReadParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
-
-                return response;
             }           
         }
         catch (Exception ex)
@@ -74,14 +72,12 @@ public class EdiFunctions
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
-                var response = new APIGatewayProxyResponse
+                return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Body = await _ediService.WriteAsync(input, apiKey, req.GetWriteParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/octet-stream; charset=utf-8" } }
                 };
-
-                return response;
             }
         }
         catch (Exception ex)
@@ -110,14 +106,12 @@ public class EdiFunctions
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
-                var response = new APIGatewayProxyResponse
+                return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Body = await _ediService.ValidateAsync(input, apiKey, req.GetValidateParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
-
-                return response;
             }
         }
         catch (Exception ex)
@@ -146,14 +140,12 @@ public class EdiFunctions
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
-                var response = new APIGatewayProxyResponse
+                return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Body = await _ediService.GenerateAckAsync(input, apiKey, req.GetAckParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
-
-                return response;
             }
         }
         catch (Exception ex)
