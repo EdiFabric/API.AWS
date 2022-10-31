@@ -189,6 +189,53 @@ internal static class Extensions
         return result;
     }
 
+    public static AnalyzeParams GetAnalyzeParams(this APIGatewayProxyRequest req)
+    {
+        var result = new AnalyzeParams();
+
+        if (req.QueryStringParameters != null)
+        {
+            var queryDictionary = req.QueryStringParameters;
+
+            if (queryDictionary.TryGetValue("model", out string model) && !string.IsNullOrEmpty(model))
+            {
+                result.Model = model;
+            }
+
+            if (queryDictionary.TryGetValue("syntaxSet", out string syntaxSet) && !string.IsNullOrEmpty(syntaxSet))
+            {
+                result.SyntaxSet = syntaxSet;
+            }
+
+            if (queryDictionary.TryGetValue("eancomS3", out string es3) && bool.TryParse(es3, out bool eancomS3))
+            {
+                result.EancomS3IsDefault = eancomS3;
+            }
+
+            if (queryDictionary.TryGetValue("basicSyntax", out string bs) && bool.TryParse(bs, out bool basicSyntax))
+            {
+                result.BasicSyntax = basicSyntax;
+            }
+
+            if (queryDictionary.TryGetValue("ack", out string ack) && !string.IsNullOrEmpty(ack))
+            {
+                result.AckVersion = ack;
+            }
+
+            if (queryDictionary.TryGetValue("charSet", out string charSet) && !string.IsNullOrEmpty(charSet))
+            {
+                result.CharSet = charSet;
+            }
+
+            if (queryDictionary.TryGetValue("skipSeq", out string sr) && bool.TryParse(sr, out bool skipSeq))
+            {
+                result.SkipSeqCountValidation = skipSeq;
+            }
+        }
+
+        return result;
+    }
+
     public static Stream LoadToStream(this string input, Encoding? encoding = null)
     {
         var enc = encoding ?? Encoding.UTF8;

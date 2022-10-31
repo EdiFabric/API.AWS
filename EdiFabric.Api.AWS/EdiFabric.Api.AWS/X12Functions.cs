@@ -29,4 +29,9 @@ public class X12Functions
     {
         return await _ediFunctions.Ack(request, context.Logger);
     }
+
+    public async Task<APIGatewayProxyResponse> AnalyzeX12Async(APIGatewayProxyRequest request, ILambdaContext context)
+    {
+        return await _ediFunctions.Analyze(request, context.Logger);
+    }
 }

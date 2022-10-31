@@ -24,4 +24,9 @@ public class NcpdpFunctions
     {
         return await _ediFunctions.Validate(request, context.Logger);
     }
+
+    public async Task<APIGatewayProxyResponse> AnalyzeNcpdpAsync(APIGatewayProxyRequest request, ILambdaContext context)
+    {
+        return await _ediFunctions.Analyze(request, context.Logger);
+    }
 }

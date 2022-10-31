@@ -18,7 +18,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -47,7 +47,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -76,7 +76,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -105,7 +105,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -134,7 +134,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -163,7 +163,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -192,7 +192,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -221,7 +221,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -250,7 +250,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -279,7 +279,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -308,7 +308,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -337,7 +337,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -366,7 +366,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -395,7 +395,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -424,7 +424,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -453,7 +453,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {
@@ -482,7 +482,7 @@
         ],
         "Environment": {
           "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/inhouse/v1"
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
           }
         },
         "Events": {

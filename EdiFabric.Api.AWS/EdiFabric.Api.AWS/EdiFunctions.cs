@@ -154,4 +154,38 @@ public class EdiFunctions
             return ErrorHandler.BuildErrorResponse(ex);
         }
     }
+
+    public async Task<APIGatewayProxyResponse> Analyze(APIGatewayProxyRequest req, ILambdaLogger logger)
+    {
+        try
+        {
+            if (req == null || req.Body == null || req.Body.Length == 0)
+            {
+                logger.LogError(_noData);
+                return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
+            }
+
+            if (!req.Headers.TryGetValue(_apiKey, out var apiKey))
+            {
+                logger.LogError(_noApiKey);
+                return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
+            }
+
+            var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
+            using (var input = body.LoadToStream())
+            {
+                return new APIGatewayProxyResponse
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Body = await _ediService.AnalyzeAsync(input, apiKey, req.GetAnalyzeParams()),
+                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
+                };
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex.Message);
+            return ErrorHandler.BuildErrorResponse(ex);
+        }
+    }
 }

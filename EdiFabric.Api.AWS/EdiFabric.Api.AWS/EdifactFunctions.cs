@@ -29,4 +29,9 @@ public class EdifactFunctions
     {
         return await _ediFunctions.Ack(request, context.Logger);
     }
+
+    public async Task<APIGatewayProxyResponse> AnalyzeEdifactAsync(APIGatewayProxyRequest request, ILambdaContext context)
+    {
+        return await _ediFunctions.Analyze(request, context.Logger);
+    }
 }
