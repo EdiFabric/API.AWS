@@ -167,8 +167,13 @@ public class EdiFunctions
 
             if (!req.Headers.TryGetValue(_apiKey, out var apiKey))
             {
-                logger.LogError(_noApiKey);
-                return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
+                if (!req.Headers.TryGetValue(_apiKey.ToLower(), out var apiKey2))
+                {
+                    logger.LogError(_noApiKey);
+                    return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
+                }
+
+                apiKey = apiKey2;
             }
 
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
@@ -178,7 +183,12 @@ public class EdiFunctions
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Body = await _ediService.AnalyzeAsync(input, apiKey, req.GetAnalyzeParams()),
-                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
+                    Headers = new Dictionary<string, string> { 
+                        { "Content-Type", "application/json" }, 
+                        { "Access-Control-Allow-Headers", "Content-Type,Ocp-Apim-Subscription-Key" },
+                        { "Access-Control-Allow-Origin", "*"},
+                        { "Access-Control-Allow-Methods", "OPTIONS,POST"}
+                    }
                 };
             }
         }

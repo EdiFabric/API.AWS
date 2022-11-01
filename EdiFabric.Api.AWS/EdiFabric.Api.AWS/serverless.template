@@ -636,7 +636,7 @@
             "Properties": {
               "Path": "/x12/analyze",
               "Method": "POST"
-            }
+            }          
           }
         }
       }
