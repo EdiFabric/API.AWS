@@ -119,6 +119,35 @@
         }
       }
     },
+    "AnalyzeEdifact": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::EdifactFunctions::AnalyzeEdifactAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to analyze EDIFACT files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
+          }
+        },
+        "Events": {
+          "ProxyResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/edifact/analyze",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
     "ReadHl7": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
@@ -200,6 +229,35 @@
             "Type": "Api",
             "Properties": {
               "Path": "/hl7/validate",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "AnalyzeHl7": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::Hl7Functions::AnalyzeHl7Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to analyze HL7 files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
+          }
+        },
+        "Events": {
+          "ProxyResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/hl7/analyze",
               "Method": "POST"
             }
           }
@@ -293,6 +351,35 @@
         }
       }
     },
+    "AnalyzeNcpdp": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::AnalyzeNcpdpAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to analyze NCPDP files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
+          }
+        },
+        "Events": {
+          "ProxyResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/ncpdp/analyze",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
     "ReadVda": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
@@ -374,6 +461,35 @@
             "Type": "Api",
             "Properties": {
               "Path": "/vda/validate",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "AnalyzeVda": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::VdaFunctions::AnalyzeVdaAsync",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to abalyze VDA files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
+          }
+        },
+        "Events": {
+          "ProxyResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/vda/analyze",
               "Method": "POST"
             }
           }
@@ -490,6 +606,35 @@
             "Type": "Api",
             "Properties": {
               "Path": "/x12/ack",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "AnalyzeX12": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "EdiFabric.Api.AWS::X12Functions::AnalyzeX12Async",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Function to analyze X12 files",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess"
+        ],
+        "Environment": {
+          "Variables": {
+            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
+          }
+        },
+        "Events": {
+          "ProxyResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/x12/analyze",
               "Method": "POST"
             }
           }
