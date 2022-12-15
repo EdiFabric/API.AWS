@@ -155,6 +155,9 @@ public class EdiFunctions
         }
     }
 
+    /// <summary>
+    /// This is a system operation used only for the in-house web translator.
+    /// </summary>
     public async Task<APIGatewayProxyResponse> Analyze(APIGatewayProxyRequest req, ILambdaLogger logger)
     {
         try

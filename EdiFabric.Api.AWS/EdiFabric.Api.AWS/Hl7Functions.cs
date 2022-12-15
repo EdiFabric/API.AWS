@@ -24,7 +24,9 @@ public class Hl7Functions
     {
         return await _ediFunctions.Validate(request, context.Logger);
     }
-
+    /// <summary>
+    /// This is a system operation used only for the in-house web translator.
+    /// </summary>
     public async Task<APIGatewayProxyResponse> AnalyzeHl7Async(APIGatewayProxyRequest request, ILambdaContext context)
     {
         return await _ediFunctions.Analyze(request, context.Logger);

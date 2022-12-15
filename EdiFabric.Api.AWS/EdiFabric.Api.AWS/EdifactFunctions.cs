@@ -29,7 +29,9 @@ public class EdifactFunctions
     {
         return await _ediFunctions.Ack(request, context.Logger);
     }
-
+    /// <summary>
+    /// This is a system operation used only for the in-house web translator.
+    /// </summary>
     public async Task<APIGatewayProxyResponse> AnalyzeEdifactAsync(APIGatewayProxyRequest request, ILambdaContext context)
     {
         return await _ediFunctions.Analyze(request, context.Logger);
