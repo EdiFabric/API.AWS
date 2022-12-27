@@ -5,7 +5,7 @@ EdiNation InHouse EDI API allows you to run EdiNation's EDI translation and vali
 This tutorial uses the example AWS Lambda that comes with the EdiNation Inhouse product, to demonstrate how to publish EdiNation Inhouse API as an AWS Lambda and API Gateway in your own AWS account(s).
 
 ## 2. Requirements
-- [EdiNation Inhouse subscription](https://buy.stripe.com/eVabJS2OT2GZ3vy002) - this contains the in-house EDI API installation files EdiFabric.dll and EdiFabric.Api.dll, and an example Visual Studion 2022 solution that implements an Azure Function.
+- [EdiNation Inhouse subscription](https://buy.stripe.com/bIY9BK615epH2rufZ4) - this contains the in-house EDI API installation files EdiFabric.dll and EdiFabric.Api.dll, and an example Visual Studion 2022 solution that implements an Azure Function.
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/), which supports .NET 6.0. 
 - If you don't have an [Azure subscription](https://docs.microsoft.com/en-us/azure/guides/developer/azure-developer-guide#understanding-accounts-subscriptions-and-billing), create an [Azure free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
 - [Download Postman](https://www.postman.com/downloads/) - it's an application to consume/test your API.
