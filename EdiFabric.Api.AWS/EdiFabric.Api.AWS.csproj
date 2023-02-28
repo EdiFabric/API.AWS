@@ -23,10 +23,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EdiFabric">
-      <HintPath>..\..\..\edifabric-api\EdiFabric.dll</HintPath>
+      <HintPath>..\..\edifabric-api\EdiFabric.dll</HintPath>
     </Reference>
     <Reference Include="EdiFabric.Api">
-      <HintPath>..\..\..\edifabric-api\EdiFabric.Api.dll</HintPath>
+      <HintPath>..\..\edifabric-api\EdiFabric.Api.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
