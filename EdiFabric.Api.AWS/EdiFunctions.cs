@@ -12,12 +12,18 @@ public class EdiFunctions
     IEdiService _ediService;
 
     //  Change this to your API key
-    private readonly string _apiKey = "3ecf6b1c5cf34bd797a5f4c57951a1cf";
+    private static string _apiKey = "3ecf6b1c5cf34bd797a5f4c57951a1cf";
+    private static string _objectName = "token";
+    private static string _bucketName = "edinationtestbucket";
+    
     private readonly string _noData = "No data in request body.";
+    private IModelService _modelService;
 
-    public EdiFunctions(IEdiService ediService)
+     public EdiFunctions(IEdiService ediService)
     {
         _ediService = ediService;
+        _modelService = EdiFabricServices.Get<IModelService>();
+        LoadModels().Wait();
     }
 
     public async Task<APIGatewayProxyResponse> Read(APIGatewayProxyRequest req, ILambdaLogger logger)
@@ -30,7 +36,7 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey);
+            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;           
             using (var input = body.LoadToStream())
             {
@@ -59,7 +65,7 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey);
+            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
@@ -88,7 +94,7 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey);
+            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
@@ -117,7 +123,7 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey);
+            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
@@ -149,7 +155,7 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey);
+            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
@@ -170,6 +176,18 @@ public class EdiFunctions
         {
             logger.LogError(ex.Message);
             return ErrorHandler.BuildErrorResponse(ex);
+        }
+    }
+
+    public async Task LoadModels()
+    {
+        foreach (var obj in await S3Helper.ListFromCache(_bucketName))
+        {
+            if (obj.StartsWith("EdiNation") && obj.EndsWith(".dll"))
+            {
+                var model = await S3Helper.ReadFromCache(_bucketName, obj);
+                await _modelService.Load(_apiKey, obj, model);
+            }
         }
     }
 }

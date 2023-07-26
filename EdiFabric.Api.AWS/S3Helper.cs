@@ -7,7 +7,40 @@ namespace EdiFabric.Api.AWS
     public class S3Helper
     {
         private static IAmazonS3 _s3Client = new AmazonS3Client(RegionEndpoint.USEast1);
-        
+
+        public static async Task<List<string>> ListFromCache(string bucketName)
+        {
+            var result = new List<string>();
+            try
+            {
+                var request = new ListObjectsV2Request
+                {
+                    BucketName = bucketName
+                };
+
+                ListObjectsV2Response response;
+
+                do
+                {
+                    response = await _s3Client.ListObjectsV2Async(request);
+
+                    foreach (var obj in response.S3Objects)
+                    {
+                        result.Add(obj.Key);
+                    }
+
+                    request.ContinuationToken = response.NextContinuationToken;
+                }
+                while (response.IsTruncated);
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"Error encountered on server. Message:'{ex.Message}' getting list of objects.");
+            }
+
+            return result;
+        }
+
         public static async Task<Stream> ReadFromCache(string bucketName, string objectName)
         {
             try

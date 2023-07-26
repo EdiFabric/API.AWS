@@ -1,22 +1,19 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 
 namespace EdiFabric.Api.AWS
 {
     public class TokenS3Cache
-    {
-        //  Change path to whatever you prefer        
-        private static string _objectName = "token";
-        private static string _bucketName = "edinationtestbucket";
-
-        public static void Set(string serialKey)
+    {      
+        public static void Set(string serialKey, string bucketName, string objectName)
         {
             try
             {
-                var token = ReadFromCache().Result;
+                var token = ReadTokenFromCache(bucketName, objectName).Result;
                 SerialKey.SetToken(token);
 
                 //  Refresh token before expiration
-                Refresh(serialKey);
+                Refresh(serialKey, bucketName, objectName);
             }
             catch(Exception ex)
             {
@@ -26,7 +23,7 @@ namespace EdiFabric.Api.AWS
                 try
                 {
                     var token = GetFromApi(serialKey);
-                    WriteToCache(token).Wait();
+                    WriteTokenToCache(token, bucketName, objectName).Wait();
                     SerialKey.SetToken(token);
                 }
                 catch (Exception ex2)
@@ -38,13 +35,13 @@ namespace EdiFabric.Api.AWS
             }
         }
 
-        private static void Refresh(string serialKey)
+        private static void Refresh(string serialKey, string bucketName, string objectName)
         {
             try
             {
                 //  Refresh the token two days before it expires
                 if (SerialKey.DaysToExpiration < 3)
-                    WriteToCache(GetFromApi(serialKey)).Wait();
+                    WriteTokenToCache(GetFromApi(serialKey), bucketName, objectName).Wait();
             }
             catch (Exception ex)
             {
@@ -81,15 +78,15 @@ namespace EdiFabric.Api.AWS
             throw new Exception("Can't get a token.");
         }
 
-        private static async Task<string> ReadFromCache()
+        private static async Task<string> ReadTokenFromCache(string bucketName, string objectName)
         {
-            var result = await S3Helper.ReadFromCache(_bucketName, _objectName);
+            var result = await S3Helper.ReadFromCache(bucketName, objectName);
             return LoadString(result);
         }
 
-        public static async Task WriteToCache(string token)
+        private static async Task WriteTokenToCache(string token, string bucketName, string objectName)
         {
-            await S3Helper.WriteToCache(_bucketName, _objectName, LoadStream(token));
+            await S3Helper.WriteToCache(bucketName, objectName, LoadStream(token));
         }
 
         private static string LoadString(Stream stream, Encoding encoding = null)
