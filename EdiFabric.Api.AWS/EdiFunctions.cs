@@ -186,6 +186,7 @@ public class EdiFunctions
             if (obj.StartsWith("EdiNation") && obj.EndsWith(".dll"))
             {
                 var model = await S3Helper.ReadFromCache(_bucketName, obj);
+                model.Position = 0;
                 await _modelService.Load(_apiKey, obj, model);
             }
         }

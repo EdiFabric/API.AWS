@@ -60,7 +60,10 @@ namespace EdiFabric.Api.AWS
                     }
 
                     if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        ms.Position = 0;
                         return ms;
+                    }
 
                     throw new Exception($"Could not download {objectName} to {bucketName}.");
                 }

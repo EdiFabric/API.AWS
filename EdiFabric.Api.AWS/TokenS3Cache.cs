@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Text;
+﻿using System.Text;
 
 namespace EdiFabric.Api.AWS
 {
@@ -89,13 +88,9 @@ namespace EdiFabric.Api.AWS
             await S3Helper.WriteToCache(bucketName, objectName, LoadStream(token));
         }
 
-        private static string LoadString(Stream stream, Encoding encoding = null)
+        private static string LoadString(Stream stream)
         {
-            stream.Position = 0;
-            using (var reader = new StreamReader(stream, encoding ?? Encoding.UTF8))
-            {
-                return reader.ReadToEnd();
-            }
+            return new StreamReader(stream, Encoding.UTF8).ReadToEnd();  
         }
 
         private static MemoryStream LoadStream(string value)
