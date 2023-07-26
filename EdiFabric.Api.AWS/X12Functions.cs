@@ -11,7 +11,7 @@ public class X12Functions
     }
 
     public async Task<APIGatewayProxyResponse> ReadX12Async(APIGatewayProxyRequest request, ILambdaContext context)
-    {
+    {        
         return await _ediFunctions.Read(request, context.Logger);
     }
 

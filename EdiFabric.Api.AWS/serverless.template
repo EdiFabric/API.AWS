@@ -15,12 +15,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -44,12 +40,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -73,12 +65,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -102,12 +90,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -131,12 +115,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -160,12 +140,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -189,12 +165,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -218,12 +190,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -247,12 +215,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -276,12 +240,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -305,12 +265,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -334,12 +290,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -363,12 +315,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -392,12 +340,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -421,12 +365,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -450,12 +390,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -479,12 +415,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -508,12 +440,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -537,12 +465,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -566,12 +490,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -595,12 +515,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
@@ -624,12 +540,8 @@
         "Role": null,
         "Policies": [
           "AWSLambda_FullAccess"
+		  ,"AmazonS3FullAccess"
         ],
-        "Environment": {
-          "Variables": {
-            "EDINATION_AUTHAPI_URL": "https://api.edination.com/v2"
-          }
-        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",

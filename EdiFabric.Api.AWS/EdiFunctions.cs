@@ -2,6 +2,7 @@
 using EdiFabric.Api;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
+using EdiFabric.Api.AWS;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -10,8 +11,8 @@ public class EdiFunctions
 {
     IEdiService _ediService;
 
-    private readonly string _apiKey = "Ocp-Apim-Subscription-Key";
-    private readonly string _noApiKey = "No Ocp-Apim-Subscription-Key in header.";
+    //  Change this to your API key
+    private readonly string _apiKey = "3ecf6b1c5cf34bd797a5f4c57951a1cf";
     private readonly string _noData = "No data in request body.";
 
     public EdiFunctions(IEdiService ediService)
@@ -29,19 +30,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            if (!req.Headers.TryGetValue(_apiKey, out var apiKey))
-            {
-                logger.LogError(_noApiKey);
-                return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
-            }
-
+            TokenS3Cache.Set(_apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;           
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ReadAsync(input, apiKey, req.GetReadParams()),
+                    Body = await _ediService.ReadAsync(input, _apiKey, req.GetReadParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }           
@@ -63,19 +59,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            if (!req.Headers.TryGetValue(_apiKey, out var apiKey))
-            {
-                logger.LogError(_noApiKey);
-                return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
-            }
-
+            TokenS3Cache.Set(_apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.WriteAsync(input, apiKey, req.GetWriteParams()),
+                    Body = await _ediService.WriteAsync(input, _apiKey, req.GetWriteParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/octet-stream; charset=utf-8" } }
                 };
             }
@@ -97,19 +88,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            if (!req.Headers.TryGetValue(_apiKey, out var apiKey))
-            {
-                logger.LogError(_noApiKey);
-                return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
-            }
-
+            TokenS3Cache.Set(_apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ValidateAsync(input, apiKey, req.GetValidateParams()),
+                    Body = await _ediService.ValidateAsync(input, _apiKey, req.GetValidateParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -131,19 +117,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            if (!req.Headers.TryGetValue(_apiKey, out var apiKey))
-            {
-                logger.LogError(_noApiKey);
-                return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
-            }
-
+            TokenS3Cache.Set(_apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.GenerateAckAsync(input, apiKey, req.GetAckParams()),
+                    Body = await _ediService.GenerateAckAsync(input, _apiKey, req.GetAckParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -168,24 +149,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            if (!req.Headers.TryGetValue(_apiKey, out var apiKey))
-            {
-                if (!req.Headers.TryGetValue(_apiKey.ToLower(), out var apiKey2))
-                {
-                    logger.LogError(_noApiKey);
-                    return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noApiKey);
-                }
-
-                apiKey = apiKey2;
-            }
-
+            TokenS3Cache.Set(_apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.AnalyzeAsync(input, apiKey, req.GetAnalyzeParams()),
+                    Body = await _ediService.AnalyzeAsync(input, _apiKey, req.GetAnalyzeParams()),
                     Headers = new Dictionary<string, string> { 
                         { "Content-Type", "application/json" }, 
                         { "Access-Control-Allow-Headers", "Content-Type,Ocp-Apim-Subscription-Key" },
