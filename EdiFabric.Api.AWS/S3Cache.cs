@@ -16,7 +16,7 @@ namespace EdiFabric.Api.AWS
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.ToString());
 
                 //  Try one last time
                 try
@@ -27,7 +27,7 @@ namespace EdiFabric.Api.AWS
                 }
                 catch (Exception ex2)
                 {
-                    Console.WriteLine(ex2.Message);
+                    Console.WriteLine(ex2.ToString());
                     //  Contact support@edifabric.com for assistance
                     throw;
                 }
@@ -57,7 +57,7 @@ namespace EdiFabric.Api.AWS
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.ToString());
                 //  If can't get a token a day before the current expires - throw an exception
                 //  Otherwise keep trying
                 if (SerialKey.DaysToExpiration <= 1)
@@ -79,7 +79,7 @@ namespace EdiFabric.Api.AWS
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.ToString());
                     index++;
 
                     if (index >= retries)

@@ -41,7 +41,7 @@ public class EdiFunctions
         }
         catch (Exception ex)
         {
-            logger.LogError(ex.Message);
+            logger.LogError(ex.ToString());
             return ErrorHandler.BuildErrorResponse(ex);
         }
     }
@@ -70,7 +70,7 @@ public class EdiFunctions
         }
         catch (Exception ex)
         {
-            logger.LogError(ex.Message);
+            logger.LogError(ex.ToString());
             return ErrorHandler.BuildErrorResponse(ex);
         }
     }
@@ -99,7 +99,7 @@ public class EdiFunctions
         }
         catch (Exception ex)
         {
-            logger.LogError(ex.Message);
+            logger.LogError(ex.ToString());
             return ErrorHandler.BuildErrorResponse(ex);
         }
     }
@@ -128,7 +128,7 @@ public class EdiFunctions
         }
         catch (Exception ex)
         {
-            logger.LogError(ex.Message);
+            logger.LogError(ex.ToString());
             return ErrorHandler.BuildErrorResponse(ex);
         }
     }
@@ -165,7 +165,7 @@ public class EdiFunctions
         }
         catch (Exception ex)
         {
-            logger.LogError(ex.Message);
+            logger.LogError(ex.ToString());
             return ErrorHandler.BuildErrorResponse(ex);
         }
     }   
