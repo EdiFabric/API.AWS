@@ -1,5 +1,4 @@
 ﻿using EdiFabric.Api;
-using EdiFabric.Api.AWS;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class EdiFabricServices

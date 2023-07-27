@@ -27,7 +27,7 @@ static class ErrorHandler
             Body = JsonSerializer.Serialize(new
             {
                 Code = (int)statusCode,
-                Details = new List<string> { ex.Message }
+                Details = new List<string> { ex.ToString() }
             }),
             Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
         };
