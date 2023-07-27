@@ -31,7 +31,9 @@ To get started, follow the steps in the [How to use InHouse EDI API as AWS Lambd
 
 [How to use EDI API as Azure Function](https://support.edifabric.com/hc/en-us/articles/7726202434449-How-to-use-Inhouse-EDI-API-as-Azure-Function)
 
+[How to use EDI API as ASP.NET Core](https://support.edifabric.com/hc/en-us/articles/9586899018013-How-to-use-EDI-API-as-ASP-NET-Core)
+
 [Support](https://support.edifabric.com/hc/en-us/requests/new)
 
-Last updated on November 22, 2022
-### 2022 © EdiFabric
+Last updated on February 28, 2023
+### 2023 © EdiFabric
