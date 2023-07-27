@@ -9,21 +9,12 @@ using EdiFabric.Api.AWS;
 
 public class EdiFunctions
 {
-    IEdiService _ediService;
+    IEdiService _ediService;  
+    private readonly string _noData = "No data in request body.";  
 
-    //  Change this to your API key
-    private static string _apiKey = "3ecf6b1c5cf34bd797a5f4c57951a1cf";
-    private static string _objectName = "token";
-    private static string _bucketName = "edinationtestbucket";
-    
-    private readonly string _noData = "No data in request body.";
-    private IModelService _modelService;
-
-     public EdiFunctions(IEdiService ediService)
+    public EdiFunctions(IEdiService ediService)
     {
         _ediService = ediService;
-        _modelService = EdiFabricServices.Get<IModelService>();
-        LoadModels().Wait();
     }
 
     public async Task<APIGatewayProxyResponse> Read(APIGatewayProxyRequest req, ILambdaLogger logger)
@@ -36,14 +27,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
+            S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;           
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ReadAsync(input, _apiKey, req.GetReadParams()),
+                    Body = await _ediService.ReadAsync(input, Configuration.ApiKey, req.GetReadParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }           
@@ -65,14 +56,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
+            S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.WriteAsync(input, _apiKey, req.GetWriteParams()),
+                    Body = await _ediService.WriteAsync(input, Configuration.ApiKey, req.GetWriteParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/octet-stream; charset=utf-8" } }
                 };
             }
@@ -94,14 +85,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
+            S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ValidateAsync(input, _apiKey, req.GetValidateParams()),
+                    Body = await _ediService.ValidateAsync(input, Configuration.ApiKey, req.GetValidateParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -123,14 +114,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
+            S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.GenerateAckAsync(input, _apiKey, req.GetAckParams()),
+                    Body = await _ediService.GenerateAckAsync(input, Configuration.ApiKey, req.GetAckParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -155,14 +146,14 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            TokenS3Cache.Set(_apiKey, _bucketName, _objectName);
+            S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.AnalyzeAsync(input, _apiKey, req.GetAnalyzeParams()),
+                    Body = await _ediService.AnalyzeAsync(input, Configuration.ApiKey, req.GetAnalyzeParams()),
                     Headers = new Dictionary<string, string> { 
                         { "Content-Type", "application/json" }, 
                         { "Access-Control-Allow-Headers", "Content-Type,Ocp-Apim-Subscription-Key" },
@@ -177,18 +168,5 @@ public class EdiFunctions
             logger.LogError(ex.Message);
             return ErrorHandler.BuildErrorResponse(ex);
         }
-    }
-
-    public async Task LoadModels()
-    {
-        foreach (var obj in await S3Helper.ListFromCache(_bucketName))
-        {
-            if (obj.StartsWith("EdiNation") && obj.EndsWith(".dll"))
-            {
-                var model = await S3Helper.ReadFromCache(_bucketName, obj);
-                model.Position = 0;
-                await _modelService.Load(_apiKey, obj, model);
-            }
-        }
-    }
+    }   
 }

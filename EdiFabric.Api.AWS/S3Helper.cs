@@ -11,67 +11,52 @@ namespace EdiFabric.Api.AWS
         public static async Task<List<string>> ListFromCache(string bucketName)
         {
             var result = new List<string>();
-            try
+
+            var request = new ListObjectsV2Request
             {
-                var request = new ListObjectsV2Request
+                BucketName = bucketName
+            };
+
+            ListObjectsV2Response response;
+            do
+            {
+                response = await _s3Client.ListObjectsV2Async(request);
+
+                foreach (var obj in response.S3Objects)
                 {
-                    BucketName = bucketName
-                };
-
-                ListObjectsV2Response response;
-
-                do
-                {
-                    response = await _s3Client.ListObjectsV2Async(request);
-
-                    foreach (var obj in response.S3Objects)
-                    {
-                        result.Add(obj.Key);
-                    }
-
-                    request.ContinuationToken = response.NextContinuationToken;
+                    result.Add(obj.Key);
                 }
-                while (response.IsTruncated);
+
+                request.ContinuationToken = response.NextContinuationToken;
             }
-            catch (AmazonS3Exception ex)
-            {
-                Console.WriteLine($"Error encountered on server. Message:'{ex.Message}' getting list of objects.");
-            }
+            while (response.IsTruncated);
 
             return result;
         }
 
         public static async Task<Stream> ReadFromCache(string bucketName, string objectName)
         {
-            try
+            var request = new GetObjectRequest
             {
-                var request = new GetObjectRequest
+                BucketName = bucketName,
+                Key = objectName,
+            };
+
+            using (GetObjectResponse response = await _s3Client.GetObjectAsync(request))
+            {
+                var ms = new MemoryStream();
+                using (Stream responseStream = response.ResponseStream)
                 {
-                    BucketName = bucketName,
-                    Key = objectName,
-                };
-
-                using (GetObjectResponse response = await _s3Client.GetObjectAsync(request))
-                {
-                    var ms = new MemoryStream();
-                    using (Stream responseStream = response.ResponseStream)
-                    {
-                        responseStream.CopyTo(ms);
-                    }
-
-                    if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        ms.Position = 0;
-                        return ms;
-                    }
-
-                    throw new Exception($"Could not download {objectName} to {bucketName}.");
+                    responseStream.CopyTo(ms);
                 }
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw;
+
+                if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    ms.Position = 0;
+                    return ms;
+                }
+
+                throw new Exception($"Could not download {objectName} to {bucketName}.");
             }
         }
 

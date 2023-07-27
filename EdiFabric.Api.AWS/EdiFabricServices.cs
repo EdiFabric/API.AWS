@@ -1,4 +1,5 @@
 ﻿using EdiFabric.Api;
+using EdiFabric.Api.AWS;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class EdiFabricServices
@@ -9,6 +10,9 @@ public static class EdiFabricServices
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddEdiFabricApi();
         _serviceProvider = serviceCollection.BuildServiceProvider();
+
+        //  Load all models from the S3 cache
+        S3Cache.LoadModels(Get<IModelService>()).Wait();
     }
 
     public static T Get<T>()

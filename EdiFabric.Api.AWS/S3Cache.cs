@@ -2,17 +2,17 @@
 
 namespace EdiFabric.Api.AWS
 {
-    public class TokenS3Cache
-    {      
-        public static void Set(string serialKey, string bucketName, string objectName)
+    public class S3Cache
+    {
+        public static void Set()
         {
             try
             {
-                var token = ReadTokenFromCache(bucketName, objectName).Result;
+                var token = ReadTokenFromCache().Result;
                 SerialKey.SetToken(token);
 
                 //  Refresh token before expiration
-                Refresh(serialKey, bucketName, objectName);
+                Refresh();
             }
             catch(Exception ex)
             {
@@ -21,8 +21,8 @@ namespace EdiFabric.Api.AWS
                 //  Try one last time
                 try
                 {
-                    var token = GetFromApi(serialKey);
-                    WriteTokenToCache(token, bucketName, objectName).Wait();
+                    var token = GetFromApi();
+                    WriteTokenToCache(token).Wait();
                     SerialKey.SetToken(token);
                 }
                 catch (Exception ex2)
@@ -34,13 +34,26 @@ namespace EdiFabric.Api.AWS
             }
         }
 
-        private static void Refresh(string serialKey, string bucketName, string objectName)
+        public static async Task LoadModels(IModelService modelService)
+        {
+            foreach (var obj in await S3Helper.ListFromCache(Configuration.BucketName))
+            {
+                if (obj.StartsWith("EdiNation") && obj.EndsWith(".dll"))
+                {
+                    var model = await S3Helper.ReadFromCache(Configuration.BucketName, obj);
+                    model.Position = 0;
+                    await modelService.Load(Configuration.ApiKey, obj, model);
+                }
+            }
+        }
+
+        private static void Refresh()
         {
             try
             {
                 //  Refresh the token two days before it expires
                 if (SerialKey.DaysToExpiration < 3)
-                    WriteTokenToCache(GetFromApi(serialKey), bucketName, objectName).Wait();
+                    WriteTokenToCache(GetFromApi()).Wait();
             }
             catch (Exception ex)
             {
@@ -52,7 +65,7 @@ namespace EdiFabric.Api.AWS
             }
         }
 
-        private static string GetFromApi(string serialKey)
+        private static string GetFromApi()
         {
             int retries = 3;
             int index = 0;
@@ -62,7 +75,7 @@ namespace EdiFabric.Api.AWS
             {
                 try
                 {
-                    return SerialKey.GetToken(serialKey);
+                    return SerialKey.GetToken(Configuration.ApiKey);
                 }
                 catch (Exception ex)
                 {
@@ -77,15 +90,15 @@ namespace EdiFabric.Api.AWS
             throw new Exception("Can't get a token.");
         }
 
-        private static async Task<string> ReadTokenFromCache(string bucketName, string objectName)
+        private static async Task<string> ReadTokenFromCache()
         {
-            var result = await S3Helper.ReadFromCache(bucketName, objectName);
+            var result = await S3Helper.ReadFromCache(Configuration.BucketName, Configuration.ObjectName);
             return LoadString(result);
         }
 
-        private static async Task WriteTokenToCache(string token, string bucketName, string objectName)
+        private static async Task WriteTokenToCache(string token)
         {
-            await S3Helper.WriteToCache(bucketName, objectName, LoadStream(token));
+            await S3Helper.WriteToCache(Configuration.BucketName, Configuration.ObjectName, LoadStream(token));
         }
 
         private static string LoadString(Stream stream)
