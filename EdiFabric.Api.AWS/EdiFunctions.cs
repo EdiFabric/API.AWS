@@ -3,6 +3,7 @@ using EdiFabric.Api;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using EdiFabric.Api.AWS;
+using EdiFabric;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -14,9 +15,9 @@ public class EdiFunctions
 
     static EdiFunctions()
     {
-        //  Load all models from the S3 cache
-        S3Cache.LoadModels(EdiFabricServices.Get<IModelService>()).Wait();
-        Console.WriteLine("Models loaded from cache.");
+        //  Uncomment if you wish to use distributed cache for models
+        //  S3Cache.LoadModels(EdiFabricServices.Get<IModelService>()).Wait();
+        //  Console.WriteLine("Models loaded from cache.");
     }
 
     public EdiFunctions(IEdiService ediService)
@@ -34,7 +35,9 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            S3Cache.Set();
+            SerialKey.Set(Configuration.ApiKey);
+            //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
+            //  S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;           
             using (var input = body.LoadToStream())
             {
@@ -63,7 +66,9 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            S3Cache.Set();
+            SerialKey.Set(Configuration.ApiKey);
+            //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
+            //  S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
@@ -92,7 +97,9 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            S3Cache.Set();
+            SerialKey.Set(Configuration.ApiKey);
+            //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
+            //  S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
@@ -121,7 +128,9 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            S3Cache.Set();
+            SerialKey.Set(Configuration.ApiKey);
+            //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
+            //  S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
@@ -153,7 +162,9 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            S3Cache.Set();
+            SerialKey.Set(Configuration.ApiKey);
+            //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
+            //  S3Cache.Set();
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
