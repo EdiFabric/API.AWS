@@ -10,10 +10,6 @@ public static class EdiFabricServices
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddEdiFabricApi();
         _serviceProvider = serviceCollection.BuildServiceProvider();
-
-        //  Load all models from the S3 cache
-        S3Cache.LoadModels(Get<IModelService>()).Wait();
-        Console.WriteLine("Models loaded from cache.");
     }
 
     public static T Get<T>()

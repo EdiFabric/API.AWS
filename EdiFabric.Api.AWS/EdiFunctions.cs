@@ -10,7 +10,14 @@ using EdiFabric.Api.AWS;
 public class EdiFunctions
 {
     IEdiService _ediService;  
-    private readonly string _noData = "No data in request body.";  
+    private readonly string _noData = "No data in request body.";
+
+    static EdiFunctions()
+    {
+        //  Load all models from the S3 cache
+        S3Cache.LoadModels(EdiFabricServices.Get<IModelService>()).Wait();
+        Console.WriteLine("Models loaded from cache.");
+    }
 
     public EdiFunctions(IEdiService ediService)
     {
