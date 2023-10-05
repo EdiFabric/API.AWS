@@ -44,7 +44,7 @@ public class EdiFunctions
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ReadAsync(input, Configuration.ApiKey, req.GetReadParams()),
+                    Body = await _ediService.ReadAsync(input, GetApiKey(req), req.GetReadParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }           
@@ -75,7 +75,7 @@ public class EdiFunctions
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.WriteAsync(input, Configuration.ApiKey, req.GetWriteParams()),
+                    Body = await _ediService.WriteAsync(input, GetApiKey(req), req.GetWriteParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/octet-stream; charset=utf-8" } }
                 };
             }
@@ -106,7 +106,7 @@ public class EdiFunctions
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ValidateAsync(input, Configuration.ApiKey, req.GetValidateParams()),
+                    Body = await _ediService.ValidateAsync(input, GetApiKey(req), req.GetValidateParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -137,7 +137,7 @@ public class EdiFunctions
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.GenerateAckAsync(input, Configuration.ApiKey, req.GetAckParams()),
+                    Body = await _ediService.GenerateAckAsync(input, GetApiKey(req), req.GetAckParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -171,7 +171,7 @@ public class EdiFunctions
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.AnalyzeAsync(input, Configuration.ApiKey, req.GetAnalyzeParams()),
+                    Body = await _ediService.AnalyzeAsync(input, GetApiKey(req), req.GetAnalyzeParams()),
                     Headers = new Dictionary<string, string> { 
                         { "Content-Type", "application/json" }, 
                         { "Access-Control-Allow-Headers", "Content-Type,Ocp-Apim-Subscription-Key" },
@@ -186,5 +186,13 @@ public class EdiFunctions
             logger.LogError(ex.ToString());
             return ErrorHandler.BuildErrorResponse(ex);
         }
-    }   
+    }
+
+    private string GetApiKey(APIGatewayProxyRequest req)
+    {
+        if (req.Headers.TryGetValue("Ocp-Apim-Subscription-Key", out var apiKey))
+            return apiKey;
+
+        return Configuration.ApiKey;
+    }
 }
