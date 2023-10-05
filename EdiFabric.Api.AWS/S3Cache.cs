@@ -4,7 +4,7 @@ namespace EdiFabric.Api.AWS
 {
     public class S3Cache
     {
-        public static void Set()
+        public static void Set(string apiKey)
         {
             try
             {
@@ -12,7 +12,7 @@ namespace EdiFabric.Api.AWS
                 SerialKey.SetToken(token);
 
                 //  Refresh token before expiration
-                Refresh();
+                Refresh(apiKey);
             }
             catch(Exception ex)
             {
@@ -21,7 +21,7 @@ namespace EdiFabric.Api.AWS
                 //  Try one last time
                 try
                 {
-                    var token = GetFromApi();
+                    var token = GetFromApi(apiKey);
                     WriteTokenToCache(token).Wait();
                     SerialKey.SetToken(token);
                 }
@@ -47,13 +47,13 @@ namespace EdiFabric.Api.AWS
             }
         }
 
-        private static void Refresh()
+        private static void Refresh(string apiKey)
         {
             try
             {
                 //  Refresh the token two days before it expires
                 if (SerialKey.DaysToExpiration < 3)
-                    WriteTokenToCache(GetFromApi()).Wait();
+                    WriteTokenToCache(GetFromApi(apiKey)).Wait();
             }
             catch (Exception ex)
             {
@@ -65,7 +65,7 @@ namespace EdiFabric.Api.AWS
             }
         }
 
-        private static string GetFromApi()
+        private static string GetFromApi(string apiKey)
         {
             int retries = 3;
             int index = 0;
@@ -75,7 +75,7 @@ namespace EdiFabric.Api.AWS
             {
                 try
                 {
-                    return SerialKey.GetToken(Configuration.ApiKey);
+                    return SerialKey.GetToken(apiKey);
                 }
                 catch (Exception ex)
                 {

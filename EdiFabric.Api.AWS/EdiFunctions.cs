@@ -35,16 +35,17 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            SerialKey.Set(Configuration.ApiKey);
+            var apiKey = GetApiKey(req);
+            SerialKey.Set(apiKey);
             //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
-            //  S3Cache.Set();
+            //  S3Cache.Set(apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;           
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ReadAsync(input, GetApiKey(req), req.GetReadParams()),
+                    Body = await _ediService.ReadAsync(input, apiKey, req.GetReadParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }           
@@ -66,16 +67,17 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            SerialKey.Set(Configuration.ApiKey);
+            var apiKey = GetApiKey(req);
+            SerialKey.Set(apiKey);
             //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
-            //  S3Cache.Set();
+            //  S3Cache.Set(apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.WriteAsync(input, GetApiKey(req), req.GetWriteParams()),
+                    Body = await _ediService.WriteAsync(input, apiKey, req.GetWriteParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/octet-stream; charset=utf-8" } }
                 };
             }
@@ -97,16 +99,17 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            SerialKey.Set(Configuration.ApiKey);
+            var apiKey = GetApiKey(req);
+            SerialKey.Set(apiKey);
             //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
-            //  S3Cache.Set();
+            //  S3Cache.Set(apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.ValidateAsync(input, GetApiKey(req), req.GetValidateParams()),
+                    Body = await _ediService.ValidateAsync(input, apiKey, req.GetValidateParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -128,16 +131,17 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            SerialKey.Set(Configuration.ApiKey);
+            var apiKey = GetApiKey(req);
+            SerialKey.Set(apiKey);
             //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
-            //  S3Cache.Set();
+            //  S3Cache.Set(apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.GenerateAckAsync(input, GetApiKey(req), req.GetAckParams()),
+                    Body = await _ediService.GenerateAckAsync(input, apiKey, req.GetAckParams()),
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
             }
@@ -162,16 +166,17 @@ public class EdiFunctions
                 return ErrorHandler.BuildErrorResponse(HttpStatusCode.BadRequest, _noData);
             }
 
-            SerialKey.Set(Configuration.ApiKey);
+            var apiKey = GetApiKey(req);
+            SerialKey.Set(apiKey);
             //  Uncomment and then comment the line above if you wish to use distributed cache for tokens
-            //  S3Cache.Set();
+            //  S3Cache.Set(apiKey);
             var body = req.IsBase64Encoded ? req.Body.Base64Decode() : req.Body;
             using (var input = body.LoadToStream())
             {
                 return new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
-                    Body = await _ediService.AnalyzeAsync(input, GetApiKey(req), req.GetAnalyzeParams()),
+                    Body = await _ediService.AnalyzeAsync(input, apiKey, req.GetAnalyzeParams()),
                     Headers = new Dictionary<string, string> { 
                         { "Content-Type", "application/json" }, 
                         { "Access-Control-Allow-Headers", "Content-Type,Ocp-Apim-Subscription-Key" },
