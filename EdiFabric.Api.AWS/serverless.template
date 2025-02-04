@@ -7,7 +7,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdifactFunctions::ReadEdifactAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to parse/read EDIFACT files",
         "MemorySize": 256,
@@ -32,7 +32,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdifactFunctions::WriteEdifactAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to generate/write EDIFACT files",
         "MemorySize": 256,
@@ -57,7 +57,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdifactFunctions::ValidateEdifactAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to validate EDIFACT messages",
         "MemorySize": 256,
@@ -82,7 +82,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdifactFunctions::AckEdifactAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to generate EDIFACT acknowledgments",
         "MemorySize": 256,
@@ -107,7 +107,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::EdifactFunctions::AnalyzeEdifactAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to analyze EDIFACT files",
         "MemorySize": 256,
@@ -132,7 +132,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::Hl7Functions::ReadHl7Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to parse/read HL7 files",
         "MemorySize": 256,
@@ -157,7 +157,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::Hl7Functions::WriteHl7Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to generate/write HL7 files",
         "MemorySize": 256,
@@ -182,7 +182,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::Hl7Functions::ValidateHl7Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to validate HL7 messages",
         "MemorySize": 256,
@@ -207,7 +207,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::Hl7Functions::AnalyzeHl7Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to analyze HL7 files",
         "MemorySize": 256,
@@ -232,7 +232,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::ReadNcpdpAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to parse/read NCPDP files",
         "MemorySize": 256,
@@ -257,7 +257,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::WriteNcpdpAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to generate/write NCPDP files",
         "MemorySize": 256,
@@ -282,7 +282,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::ValidateNcpdpAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to validate NCPDP messages",
         "MemorySize": 256,
@@ -307,7 +307,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::NcpdpFunctions::AnalyzeNcpdpAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to analyze NCPDP files",
         "MemorySize": 256,
@@ -332,7 +332,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::VdaFunctions::ReadVdaAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to parse/read VDA files",
         "MemorySize": 256,
@@ -357,7 +357,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::VdaFunctions::WriteVdaAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to generate/write VDA files",
         "MemorySize": 256,
@@ -382,7 +382,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::VdaFunctions::ValidateVdaAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to validate VDA messages",
         "MemorySize": 256,
@@ -407,7 +407,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::VdaFunctions::AnalyzeVdaAsync",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to abalyze VDA files",
         "MemorySize": 256,
@@ -432,7 +432,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::X12Functions::ReadX12Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to parse/read X12 files",
         "MemorySize": 256,
@@ -457,7 +457,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::X12Functions::WriteX12Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to generate/write X12 files",
         "MemorySize": 256,
@@ -482,7 +482,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::X12Functions::ValidateX12Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to validate X12 messages",
         "MemorySize": 256,
@@ -507,7 +507,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::X12Functions::AckX12Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to generate X12 acknowledgments",
         "MemorySize": 256,
@@ -532,7 +532,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "EdiFabric.Api.AWS::X12Functions::AnalyzeX12Async",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function to analyze X12 files",
         "MemorySize": 256,
