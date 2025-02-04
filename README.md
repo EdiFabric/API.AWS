@@ -2,10 +2,10 @@
 
 ## 1. Overview
 EdiNation InHouse EDI API allows you to run EdiNation's EDI translation and validation API in your own cloud or on-prem environment(s).  
-This tutorial uses the example AWS Lambda that comes with the EdiNation Inhouse product, to demonstrate how to publish EdiNation Inhouse API as an AWS Lambda and API Gateway in your own AWS account(s).
+This tutorial uses the example AWS Lambda that comes with the EdiNation Inhouse product to demonstrate how to publish EdiNation Inhouse API as an AWS Lambda and API Gateway in your own AWS account(s).
 
 ## 2. Requirements
-- [EdiNation Inhouse subscription](https://buy.stripe.com/bIY9BK615epH2rufZ4) - this contains the in-house EDI API installation files EdiFabric.dll and EdiFabric.Api.dll, and an example Visual Studion 2022 solution that implements an Azure Function.
+- [EdiNation Inhouse subscription](https://buy.stripe.com/bIY9BK615epH2rufZ4) - this contains the in-house EDI API installation files EdiFabric.dll and EdiFabric.Api.dll, and an example Visual Studio 2022 solution that implements an Azure Function.
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/), which supports .NET 8.0 (or .NET 6.0). 
 - If you don't have an [Azure subscription](https://docs.microsoft.com/en-us/azure/guides/developer/azure-developer-guide#understanding-accounts-subscriptions-and-billing), create an [Azure free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
 - [Download Postman](https://www.postman.com/downloads/) - it's an application to consume/test your API.
@@ -34,6 +34,4 @@ To get started, follow the steps in the [How to use InHouse EDI API as AWS Lambd
 [How to use EDI API as ASP.NET Core](https://support.edifabric.com/hc/en-us/articles/9586899018013-How-to-use-EDI-API-as-ASP-NET-Core)
 
 [Support](https://support.edifabric.com/hc/en-us/requests/new)
-
-Last updated on February 28, 2023
-### 2023 © EdiFabric
+### 2025 © EdiFabric
