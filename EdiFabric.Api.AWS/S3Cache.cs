@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Runtime.Loader;
+using System.Text;
 
 namespace EdiFabric.Api.AWS
 {
@@ -34,15 +36,20 @@ namespace EdiFabric.Api.AWS
             }
         }
 
-        public static async Task LoadModels(IModelService modelService)
+        public static async Task LoadModels()
         {
+            var loadContext = GetLoadContext(Configuration.ApiKey);
+
             foreach (var obj in await S3Helper.ListFromCache(Configuration.BucketName))
             {
-                if (obj.StartsWith("EdiNation") && obj.EndsWith(".dll"))
+                if (obj.EndsWith(".dll"))
                 {
-                    var model = await S3Helper.ReadFromCache(Configuration.BucketName, obj);
-                    model.Position = 0;
-                    await modelService.Load(Configuration.ApiKey, obj, model);
+                    if (loadContext.Assemblies.FirstOrDefault(a => a.GetName().Name == obj) == null)
+                    {
+                        var model = await S3Helper.ReadFromCache(Configuration.BucketName, obj);
+                        model.Position = 0;
+                        loadContext.LoadFromStream(model);
+                    }
                 }
             }
         }
@@ -109,6 +116,23 @@ namespace EdiFabric.Api.AWS
         private static MemoryStream LoadStream(string value)
         {
             return new MemoryStream(Encoding.UTF8.GetBytes(value));
+        }
+
+        private static AssemblyLoadContext GetLoadContext(string apiKey)
+        {
+            return AssemblyLoadContext.All.FirstOrDefault(alc => alc.Name == apiKey) ?? new CustomAssemblyLoadContext(apiKey);
+        }
+
+        public static List<Assembly> GetLoadedAssemblies()
+        {
+            return GetLoadContext(Configuration.ApiKey).Assemblies.ToList();
+        }
+    }
+
+    class CustomAssemblyLoadContext : AssemblyLoadContext
+    {
+        public CustomAssemblyLoadContext(string apiKey) : base(apiKey)
+        {
         }
     }
 }

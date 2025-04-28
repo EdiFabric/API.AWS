@@ -16,7 +16,7 @@ public class EdiFunctions
     static EdiFunctions()
     {
         //  Uncomment if you wish to use distributed cache for models
-        //  S3Cache.LoadModels(EdiFabricServices.Get<IModelService>()).Wait();
+        //  S3Cache.LoadModels().Wait();
         //  Console.WriteLine("Models loaded from cache.");
     }
 
