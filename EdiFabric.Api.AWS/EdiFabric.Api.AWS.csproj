@@ -16,7 +16,7 @@
 	  <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="2.2.4" />
 	  <PackageReference Include="AWSSDK.ApiGatewayManagementApi" Version="3.7.400.87" />
 	  <PackageReference Include="AWSSDK.S3" Version="3.7.413.2" />
-	  <PackageReference Include="EdiFabric.Api" Version="2.2.11" />
+	  <PackageReference Include="EdiFabric.Api" Version="2.2.12" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
 	  <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
   </ItemGroup>
